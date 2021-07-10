@@ -30,4 +30,5 @@ public class User extends Timestamped {
 
     @Column(nullable = false)
     private String password;
+
 }
