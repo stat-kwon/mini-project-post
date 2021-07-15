@@ -36,6 +36,7 @@ public class UserController {
         return "redirect:/user/login";
     }
 
+    // 415 Error 해결 못함..
     @PostMapping("user/login")
     public String loginUser(LoginUserDto loginUserDto) {
         User user = userService.loginUser(loginUserDto);

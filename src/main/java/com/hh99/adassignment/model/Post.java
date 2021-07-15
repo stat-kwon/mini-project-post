@@ -1,20 +1,20 @@
 package com.hh99.adassignment.model;
 
+import com.hh99.adassignment.dto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
-@Setter
 @Getter
 @NoArgsConstructor
 @Entity
 public class Post extends Timestamped {
 
-    public Post(String title, String content) {
-        this.title = title;
-        this.content = content;
+    public Post(PostRequestDto postRequestDto) {
+        this.nickname = postRequestDto.getNickname();
+        this.title = postRequestDto.getTitle();
+        this.content = postRequestDto.getContent();
     }
 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +22,16 @@ public class Post extends Timestamped {
     private Long id;
 
     @Column(nullable = false)
+    private String nickname;
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false, columnDefinition = "Text")
     private String content;
+
+    public void update(PostRequestDto postRequestDto) {
+        this.title = postRequestDto.getTitle();
+        this.content = postRequestDto.getContent();
+    }
 }
